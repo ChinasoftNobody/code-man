@@ -2,6 +2,7 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {TokenService} from './token.service';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class LoginInterceptor implements CanActivate {
@@ -14,6 +15,9 @@ export class LoginInterceptor implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> | boolean | UrlTree {
+    if (!environment.production) {
+      return true;
+    }
     // 返回值 true: 跳转到当前路由 false: 不跳转到当前路由
     // 当前路由名称
     const path = route.routeConfig.path;

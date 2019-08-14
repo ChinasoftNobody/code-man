@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="app-header-content">
+  <button mat-button (click)="go('home')">CodeMan</button>
+  <button mat-button (click)="go('')">代码</button>
+  <button mat-button (click)="go('')">构建</button>
+  <button mat-button (click)="go('')">发布</button>
+  <div class="example-spacer"></div>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <span>{{userInfo?.name}}</span>
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logout()">登出</button>
+  </mat-menu>
+</mat-toolbar>
