@@ -26,6 +26,7 @@ import {
 import {HttpClientModule} from '@angular/common/http';
 import {HeaderComponent} from './header/header.component';
 import {LoginService} from './service/login.service';
+import {ProjectService} from './service/project.service';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import {LoginService} from './service/login.service';
     MatTableModule
   ],
   entryComponents: [BottomSheetErrorComponent],
-  providers: [LoginInterceptor, TokenService, CookieService, ErrorService, HttpService, LoginService],
+  providers: [LoginInterceptor, TokenService, CookieService, ErrorService, HttpService, LoginService,
+    ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
