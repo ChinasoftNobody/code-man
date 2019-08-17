@@ -27,11 +27,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {HeaderComponent} from './header/header.component';
 import {LoginService} from './service/login.service';
 import {ProjectService} from './service/project.service';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {HeaderService} from './service/header.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent, LoginComponent, BottomSheetErrorComponent, HeaderComponent
+    AppComponent, HomeComponent, LoginComponent, BottomSheetErrorComponent, HeaderComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,7 @@ import {ProjectService} from './service/project.service';
   ],
   entryComponents: [BottomSheetErrorComponent],
   providers: [LoginInterceptor, TokenService, CookieService, ErrorService, HttpService, LoginService,
-    ProjectService],
+    ProjectService, HeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

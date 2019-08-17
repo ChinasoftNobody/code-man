@@ -3,6 +3,7 @@ import {PageModel} from '../model/page.model';
 import {ProjectModel} from '../model/project.model';
 import {ProjectService} from '../service/project.service';
 import {MatTableDataSource} from '@angular/material/table';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,20 +11,22 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  projectPage: PageModel<ProjectModel>;
-  displayedColumns: string[] = ['name'];
-  dataSource: MatTableDataSource<ProjectModel>;
 
-  constructor(private projectService: ProjectService) {
+
+  constructor(
+    private router: Router) {
   }
 
   ngOnInit(): void {
-    this.projectPage = this.projectService.getProjectList();
-    this.dataSource = new MatTableDataSource(this.projectPage.content);
+
   }
 
   applyFilter(value: string) {
-    this.dataSource.filter = value.trim().toLowerCase();
+
+  }
+
+  goProject(projectId: string) {
+
   }
 }
 

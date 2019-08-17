@@ -1,9 +1,16 @@
 <mat-toolbar color="primary" class="app-header-content">
-  <button mat-button (click)="go('home')">CodeMan</button>
-  <button mat-button (click)="go('')">代码</button>
-  <button mat-button (click)="go('')">构建</button>
-  <button mat-button (click)="go('')">发布</button>
+  <button mat-button (click)="go(['home'])">CodeMan</button>
+  <button mat-button (click)="go([''])">代码</button>
+  <button mat-button (click)="go([''])">构建</button>
+  <button mat-button (click)="go([''])">发布</button>
   <div class="example-spacer"></div>
+  <mat-form-field>
+    <mat-select [(ngModel)]="currentProject" (selectionChange)="changeProject()">
+      <mat-option *ngFor="let project of projects" [value]="project.id">
+        {{project.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <button mat-button [matMenuTriggerFor]="menu">
     <span>{{userInfo?.name}}</span>
     <mat-icon>more_vert</mat-icon>
