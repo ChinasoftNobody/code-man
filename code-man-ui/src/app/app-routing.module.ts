@@ -1,17 +1,24 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {HomeComponent} from './home/home.component';
 import {LoginInterceptor} from './service/login-interceptor.service';
 import {LoginComponent} from './login/login.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {DashboardComponent} from './project/dashboard/dashboard.component';
+import {CodeComponent} from './project/code/code.component';
+import {ProjectComponent} from './project/project.component';
+import {FileComponent} from './project/code/file/file.component';
 
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: '/home', canActivate: [LoginInterceptor]},
-  {path: 'home', component: HomeComponent, canActivate: [LoginInterceptor]},
+  {path: '', component: DashboardComponent, canActivate: [LoginInterceptor]},
   {path: 'login', component: LoginComponent},
-  {path: 'project/:projectId', component: DashboardComponent},
-  ];
+  {
+    path: 'project/:projectId', component: ProjectComponent, canActivate: [LoginInterceptor], children: [
+      {path: '', component: DashboardComponent, canActivate: [LoginInterceptor]},
+      {path: 'code', component: CodeComponent, canActivate: [LoginInterceptor]},
+      {path: 'code/:codeId/files', component: FileComponent, canActivate: [LoginInterceptor]},
+    ]
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
