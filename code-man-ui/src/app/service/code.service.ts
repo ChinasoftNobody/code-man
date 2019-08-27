@@ -10,7 +10,8 @@ export class CodeService {
   }
 
   queryCodesByProject(projectId: string): Observable<CodeModel[]> {
-    return new BehaviorSubject<CodeModel[]>([{name: 'TestService', description: '', id: '1'}]);
+    return new BehaviorSubject<CodeModel[]>([{name: 'TestService', description: 'TestService', id: '1'},
+      {name: 'TestService2', description: 'TestService2', id: '2'}]);
   }
 
   queryCodeFileTree(projectId: string, codeId: string, branch: string): Observable<CodeFileModel> {

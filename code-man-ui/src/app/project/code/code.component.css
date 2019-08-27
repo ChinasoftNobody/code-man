@@ -1,17 +1,1 @@
-table {
-  width: 100%;
-}
-tr.example-element-row:not(.example-expanded-row):hover {
-  background: #888888;
-  cursor: pointer;
-}
 
-tr.example-element-row:not(.example-expanded-row):active {
-  background: #efefef;
-}
-tr.example-element-header>th{
-  font-size: 12pt;
-}
-.mat-form-field {
-  width: 100%;
-}

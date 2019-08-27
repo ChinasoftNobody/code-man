@@ -34,13 +34,14 @@ import {CodeService} from './service/code.service';
 import {FileComponent} from './project/code/file/file.component';
 import {FileLeafComponent} from './project/code/file/leaf/file-leaf.component';
 import {CodeItemComponent} from './project/code/item/code-item.component';
+import {CrumbsComponent} from './common/crumbs/crumbs.component';
 
 
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, BottomSheetErrorComponent, HeaderComponent,
     DashboardComponent, CodeComponent, ProjectComponent, FileComponent, FileLeafComponent,
-    CodeItemComponent
+    CodeItemComponent, CrumbsComponent
   ],
   imports: [
     BrowserModule,
