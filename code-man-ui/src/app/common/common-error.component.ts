@@ -1,4 +1,4 @@
-import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetConfig, MatBottomSheetRef} from '@angular/material';
+
 import {Component, Inject, Input} from '@angular/core';
 import {ErrorMsg} from '../model/response.model';
 
@@ -8,6 +8,6 @@ import {ErrorMsg} from '../model/response.model';
 })
 export class BottomSheetErrorComponent {
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<BottomSheetErrorComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: ErrorMsg) {
+  constructor() {
   }
 }

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {MatBottomSheet} from '@angular/material';
 import {BottomSheetErrorComponent} from '../common/common-error.component';
 import {ErrorMsg, ErrorType} from '../model/response.model';
 
@@ -9,7 +8,7 @@ import {ErrorMsg, ErrorType} from '../model/response.model';
 export class ErrorService {
   private errorQueue = new BehaviorSubject<ErrorMsg>(null);
 
-  constructor(private msb: MatBottomSheet) {
+  constructor() {
     this.startReadMessage();
   }
 
@@ -36,15 +35,15 @@ export class ErrorService {
    */
   private startReadMessage() {
     this.errorQueue.subscribe(msg => {
-      if (msg !== null) {
-        const matBottomSheetRef = this.msb.open(BottomSheetErrorComponent, {data: msg});
-        if (msg.type === ErrorType.BUSINESS) {
-          setTimeout(() => {
-            matBottomSheetRef.dismiss();
-          }, 2000);
-        }
-
-      }
+      // if (msg !== null) {
+      //   const matBottomSheetRef = this.msb.open(BottomSheetErrorComponent, {data: msg});
+      //   if (msg.type === ErrorType.BUSINESS) {
+      //     setTimeout(() => {
+      //       matBottomSheetRef.dismiss();
+      //     }, 2000);
+      //   }
+      //
+      // }
     });
   }
 

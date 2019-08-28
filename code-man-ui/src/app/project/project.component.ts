@@ -3,13 +3,14 @@ import {ProjectModel} from '../model/project.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HeaderService} from '../service/header.service';
 import {ProjectService} from '../service/project.service';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
-export class ProjectComponent implements OnInit{
+export class ProjectComponent implements OnInit {
   project: ProjectModel;
 
   // 项目代码

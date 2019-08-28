@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="app-header-content">
+<!--<mat-toolbar color="primary" class="app-header-content">
   <button mat-button (click)="go(['project/' + currentProject])">CodeMan</button>
   <button mat-button (click)="go(['project/' + currentProject + '/code'])">代码</button>
   <button mat-button (click)="go(['project/' + currentProject + '/code'])">构建</button>
@@ -18,4 +18,16 @@
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="logout()">登出</button>
   </mat-menu>
-</mat-toolbar>
+</mat-toolbar>-->
+<p-menubar [model]="menuItems">
+  <div>
+    <p-dropdown [options]="projectDropdownOptions" [(ngModel)]="currentProject" (onClick)="changeProject()"></p-dropdown>
+    <button pButton label="Logout" icon="fa fa-sign-out" style="margin-left:.25em"></button>
+  </div>
+</p-menubar>
+<!--<p-menubar [model]="menuItems" [autoDisplay]="false">-->
+<!--  <div>-->
+<!--    <input type="text" pInputText placeholder="Search">-->
+<!--    <button pButton label="Logout" icon="fa fa-sign-out" style="margin-left:.25em"></button>-->
+<!--  </div>-->
+<!--</p-menubar>-->

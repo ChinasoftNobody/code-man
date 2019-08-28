@@ -12,16 +12,6 @@ import {LoginComponent} from './login/login.component';
 import {BottomSheetErrorComponent} from './common/common-error.component';
 import {ErrorService} from './service/error.service';
 import {HttpService} from './service/http.service';
-import {
-  MatBottomSheetModule,
-  MatButtonModule, MatCardModule,
-  MatCheckboxModule, MatGridListModule,
-  MatIconModule,
-  MatInputModule, MatListModule,
-  MatMenuModule, MatPaginatorModule, MatProgressSpinnerModule,
-  MatSelectModule, MatSidenavModule, MatSortModule, MatTableModule,
-  MatToolbarModule, MatTreeModule
-} from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
 import {HeaderComponent} from './header/header.component';
 import {LoginService} from './service/login.service';
@@ -35,6 +25,18 @@ import {FileComponent} from './project/code/file/file.component';
 import {FileLeafComponent} from './project/code/file/leaf/file-leaf.component';
 import {CodeItemComponent} from './project/code/item/code-item.component';
 import {CrumbsComponent} from './common/crumbs/crumbs.component';
+import {MenubarModule} from 'primeng/menubar';
+import {ButtonModule} from 'primeng/button';
+import {
+  ChartModule,
+  InputTextModule,
+  EditorModule,
+  ContextMenuModule,
+  DropdownModule,
+  OrderListModule,
+  BreadcrumbModule, PanelModule
+} from 'primeng/primeng';
+import {DataViewModule} from 'primeng/dataview';
 
 
 @NgModule({
@@ -47,29 +49,26 @@ import {CrumbsComponent} from './common/crumbs/crumbs.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatInputModule,
     ReactiveFormsModule,
     FormsModule,
-    MatIconModule,
-    MatSelectModule,
-    MatCardModule,
-    MatBottomSheetModule,
     HttpClientModule,
-    MatGridListModule,
-    MatSidenavModule,
-    MatProgressSpinnerModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatTableModule, MatListModule, MatTreeModule
+
+    MenubarModule,
+    ButtonModule,
+    InputTextModule,
+    ChartModule,
+    EditorModule,
+    ContextMenuModule,
+    DropdownModule,
+    OrderListModule,
+    BreadcrumbModule,
+    DataViewModule,
+    PanelModule
   ],
   entryComponents: [BottomSheetErrorComponent],
   providers: [LoginInterceptor, TokenService, CookieService, ErrorService, HttpService, LoginService,
     ProjectService, HeaderService, CodeService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
