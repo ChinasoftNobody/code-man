@@ -22,7 +22,6 @@ import {CodeComponent} from './project/code/code.component';
 import {ProjectComponent} from './project/project.component';
 import {CodeService} from './service/code.service';
 import {FileComponent} from './project/code/file/file.component';
-import {FileLeafComponent} from './project/code/file/leaf/file-leaf.component';
 import {CodeItemComponent} from './project/code/item/code-item.component';
 import {CrumbsComponent} from './common/crumbs/crumbs.component';
 import {MenubarModule} from 'primeng/menubar';
@@ -34,7 +33,7 @@ import {
   ContextMenuModule,
   DropdownModule,
   OrderListModule,
-  BreadcrumbModule, PanelModule
+  BreadcrumbModule, PanelModule, CardModule, TreeTableModule, DialogModule
 } from 'primeng/primeng';
 import {DataViewModule} from 'primeng/dataview';
 
@@ -42,7 +41,7 @@ import {DataViewModule} from 'primeng/dataview';
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, BottomSheetErrorComponent, HeaderComponent,
-    DashboardComponent, CodeComponent, ProjectComponent, FileComponent, FileLeafComponent,
+    DashboardComponent, CodeComponent, ProjectComponent, FileComponent,
     CodeItemComponent, CrumbsComponent
   ],
   imports: [
@@ -63,7 +62,10 @@ import {DataViewModule} from 'primeng/dataview';
     OrderListModule,
     BreadcrumbModule,
     DataViewModule,
-    PanelModule
+    PanelModule,
+    CardModule,
+    TreeTableModule,
+    DialogModule
   ],
   entryComponents: [BottomSheetErrorComponent],
   providers: [LoginInterceptor, TokenService, CookieService, ErrorService, HttpService, LoginService,

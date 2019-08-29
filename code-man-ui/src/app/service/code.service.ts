@@ -37,4 +37,8 @@ export class CodeService {
   queryCodeBranches(projectId: string, codeId: string): Observable<string[]> {
     return new BehaviorSubject<string[]>(['master', 'develop']);
   }
+
+  createCode(createCodeModel: CodeModel): Observable<CodeModel> {
+    return new BehaviorSubject<CodeModel>(createCodeModel);
+  }
 }

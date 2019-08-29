@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CodeService} from '../../../service/code.service';
 import {CodeFileModel, FileTypeEnum} from '../../../model/code.model';
 import {ActivatedRoute} from '@angular/router';
-import {FlatTreeControl} from '@angular/cdk/tree';
+import {TreeNode} from 'primeng/api';
 
 
 @Component({
@@ -11,13 +11,26 @@ import {FlatTreeControl} from '@angular/cdk/tree';
   styleUrls: ['./file.component.css']
 })
 export class FileComponent implements OnInit {
+  filesTree: TreeNode[] = [];
+  projectId: string;
+  codeId: string;
+  branches: string[];
+  currentBranch: string;
 
   constructor(private codeService: CodeService,
               private activeRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.activeRoute.parent.parent.paramMap.subscribe(params => {
+      this.activeRoute.paramMap.subscribe(subParams => {
+        this.projectId = params.get('projectId');
+        this.codeId = subParams.get('codeId');
+        this.initBranchesAndFiles();
+      });
+    });
   }
+
   //
   // // project
   // projectId: string;
@@ -51,29 +64,38 @@ export class FileComponent implements OnInit {
   //   });
   // }
   //
-  // initBranchesAndFiles() {
-  //   this.codeService.queryCodeBranches(this.projectId, this.codeId).subscribe(branches => {
-  //     this.branches = branches;
-  //     this.currentBranch = branches[0];
-  //     this.changeBranch();
-  //   });
-  // }
-  //
-  // private initFiles(branch: string) {
-  //   this.codeService.queryCodeFileTree(this.projectId, this.codeId, branch).subscribe(codeFile => {
-  //     this.file = codeFile;
-  //     this.dataSource.data = [this.file];
-  //   });
-  // }
-  //
-  // changeBranch() {
-  //   this.initFiles(this.currentBranch);
-  // }
-}
+  initBranchesAndFiles() {
+    this.codeService.queryCodeBranches(this.projectId, this.codeId).subscribe(branches => {
+      this.branches = branches;
+      this.currentBranch = branches[0];
+      this.changeBranch();
+    });
+  }
 
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
+  private initFiles(branch: string) {
+    this.codeService.queryCodeFileTree(this.projectId, this.codeId, branch).subscribe(codeFile => {
+      this.filesTree = this.transFormTree([codeFile]);
+    });
+  }
+
+  changeBranch() {
+    this.initFiles(this.currentBranch);
+  }
+
+  private transFormTree(codeFiles: CodeFileModel[]): TreeNode[] {
+    const nodes: TreeNode[] = [];
+    codeFiles.forEach(value => {
+      const item: TreeNode = {
+        label: value.name,
+        icon: 'pi pi-file',
+        data: value
+      };
+      if (value.children && value.type === FileTypeEnum.DIR) {
+        item.children = this.transFormTree(value.children);
+      }
+      nodes.push(item);
+    });
+    return nodes;
+  }
 }
 

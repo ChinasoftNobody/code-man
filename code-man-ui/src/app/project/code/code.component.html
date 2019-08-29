@@ -1,22 +1,15 @@
-<!--<mat-list disableRipple="true">-->
-<!--  <mat-list-item *ngFor="let code of codes">-->
-<!--    <app-code-item [item]="code"></app-code-item>-->
-<!--  </mat-list-item>-->
-<!--</mat-list>-->
-
-<p-dataView #dv [value]="codes" [paginator]="false" paginatorPosition="both" filterBy="brand"
-             [sortOrder]="0">
+<p-dataView #dv [value]="codes" layout="grid" [paginator]="false" paginatorPosition="both" filterBy="brand"
+            [sortOrder]="0">
   <p-header>
     <div class="ui-helper-clearfix">
       <div class="ui-g">
         <div class="ui-g-12 ui-md-4">
-          <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
-                      (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+          <p-button icon="pi pi-plus" label="添加代码库" (click)="showCreateCodeDialog()"></p-button>
         </div>
         <div class="ui-g-6 ui-md-4 filter-container">
-          <div style="position:relative">
+          <!--<div style="position:relative">
             <input type="search" pInputText placeholder="Search by brand" (keyup)="dv.filter($event.target.value)">
-          </div>
+          </div>-->
         </div>
         <div class="ui-g-6 ui-md-4" style="text-align:right">
           <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
@@ -24,40 +17,64 @@
       </div>
     </div>
   </p-header>
-  <ng-template let-car pTemplate="listItem">
+  <ng-template let-code pTemplate="listItem">
     <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
-      <div class="ui-g-12 ui-md-3" style="text-align:center">
-        <img src="assets/showcase/images/demo/car/{{car.brand}}.png">
-      </div>
       <div class="ui-g-12 ui-md-8 car-details">
         <div class="ui-g">
-          <div class="ui-g-2 ui-sm-6">Vin:</div>
-          <div class="ui-g-10 ui-sm-6"><b>{{car.vin}}</b></div>
-
-          <div class="ui-g-2 ui-sm-6">Year:</div>
-          <div class="ui-g-10 ui-sm-6"><b>{{car.year}}</b></div>
-
-          <div class="ui-g-2 ui-sm-6">Brand:</div>
-          <div class="ui-g-10 ui-sm-6"><b>{{car.brand}}</b></div>
-
-          <div class="ui-g-2 ui-sm-6">Color:</div>
-          <div class="ui-g-10 ui-sm-6"><b>{{car.color}}</b></div>
+          <div class="ui-g-2 ui-sm-6" [routerLink]="'./' + code.id + '/files'"><b>{{code.name}}</b></div>
+          <div class="ui-g-10 ui-sm-6"><b>{{code.description}}</b></div>
         </div>
-      </div>
-      <div class="ui-g-12 ui-md-1 search-icon">
-        <button pButton type="button" icon="pi pi-search"></button>
       </div>
     </div>
   </ng-template>
 
-  <ng-template let-car pTemplate="gridItem">
+  <ng-template let-code pTemplate="gridItem">
     <div style="padding:.5em" class="ui-g-12 ui-md-3">
-      <p-panel [header]="car.vin" [style]="{'text-align':'center'}">
-        <img src="assets/showcase/images/demo/car/{{car.brand}}.png" width="60">
-        <div class="car-detail">{{car.year}} - {{car.color}}</div>
-        <hr class="ui-widget-content" style="border-top:0">
-        <button pButton type="button" icon="pi pi-search" style="margin-top:0"></button>
-      </p-panel>
+      <p-card [header]="code.name" [style]="{width: '360px'}" [routerLink]="'./' + code.id + '/files'">
+        <div>{{code.description}}</div>
+      </p-card>
     </div>
   </ng-template>
 </p-dataView>
+
+<!-- dialog -->
+<p-dialog header="添加代码库" [(visible)]="dialogDisplay" [modal]="true" [responsive]="true"
+          [style]="{width: '50%', minWidth: '200px'}" [minY]="70"
+          [maximizable]="true" [baseZIndex]="10000">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-6">
+      <div class="ui-inputgroup">
+        <span style="width: 100px;" class="ui-inputgroup-addon">名称</span>
+        <input type="text" pInputText [(ngModel)]="createCodeModel.name">
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-md-6">
+      <div class="ui-inputgroup">
+        <span style="width: 100px;" class="ui-inputgroup-addon">选择源</span>
+        <p-dropdown [options]="codeSourcesOptions" [(ngModel)]="createCodeModel.type"
+                     [showClear]="true"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <span style="width: 100px;" class="ui-inputgroup-addon">地址</span>
+        <input type="text" pInputText [(ngModel)]="createCodeModel.url">
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <span style="width: 100px;" class="ui-inputgroup-addon">描述</span>
+        <input type="text" pInputText  [(ngModel)]="createCodeModel.url">
+      </div>
+    </div>
+
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="createCodeFunc()" label="确定"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="dialogDisplay=false" label="取消"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

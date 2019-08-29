@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CodeModel} from '../../model/code.model';
 import {CodeService} from '../../service/code.service';
 import {HeaderService} from '../../service/header.service';
+import {SelectItem} from 'primeng/api';
 
 @Component({
   selector: 'app-code',
@@ -13,8 +14,12 @@ import {HeaderService} from '../../service/header.service';
   styleUrls: ['./code.component.css']
 })
 export class CodeComponent implements OnInit {
-
+  dialogDisplay = false;
   codes: CodeModel[];
+  createCodeModel: CodeModel = {};
+  codeSourcesOptions: SelectItem[] = [
+    {label: 'GitHub', value: 'GitHub'}, {label: 'SVN', value: 'SVN'}
+  ];
 
   constructor(
     private router: Router,
@@ -32,6 +37,18 @@ export class CodeComponent implements OnInit {
     });
 
 
+  }
+
+  showCreateCodeDialog() {
+    this.dialogDisplay = true;
+  }
+
+  createCodeFunc() {
+    this.codeService.createCode(this.createCodeModel).subscribe(value => {
+      this.codes.push(value);
+      this.dialogDisplay = false;
+      this.createCodeModel = {};
+    });
   }
 }
 
