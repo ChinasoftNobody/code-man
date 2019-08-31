@@ -7,6 +7,7 @@ import {CodeModel} from '../../model/code.model';
 import {CodeService} from '../../service/code.service';
 import {HeaderService} from '../../service/header.service';
 import {SelectItem} from 'primeng/api';
+import {CrumbsService} from '../../common/crumbs/crumbs.service';
 
 @Component({
   selector: 'app-code',
@@ -28,6 +29,7 @@ export class CodeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    CrumbsService.addCrumbItems({label: '代码托管', routerLink: './code'});
     this.activeRoute.parent.paramMap.subscribe(params => {
       this.codeService.queryCodesByProject(params.get('projectId')).subscribe(
         codes => {
