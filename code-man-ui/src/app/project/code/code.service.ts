@@ -1,17 +1,18 @@
 import {Injectable} from '@angular/core';
-import {CodeFileModel, CodeModel, FileTypeEnum} from '../model/code.model';
-import {HttpService} from './http.service';
+import {CodeFileModel, CodeModel, FileTypeEnum} from '../../model/code.model';
+import {HttpService} from '../../service/http.service';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {Db} from '../../service/db';
 
 @Injectable()
 export class CodeService {
 
-  constructor(private http: HttpService) {
+  constructor(private http: HttpService,
+              private db: Db) {
   }
 
   queryCodesByProject(projectId: string): Observable<CodeModel[]> {
-    return new BehaviorSubject<CodeModel[]>([{name: 'TestService', description: 'TestService', id: '1'},
-      {name: 'TestService2', description: 'TestService2', id: '2'}]);
+    return new BehaviorSubject<CodeModel[]>(this.db.getData<CodeModel>('t_code'));
   }
 
   queryCodeFileTree(projectId: string, codeId: string, branch: string): Observable<CodeFileModel> {
@@ -39,6 +40,6 @@ export class CodeService {
   }
 
   createCode(createCodeModel: CodeModel): Observable<CodeModel> {
-    return new BehaviorSubject<CodeModel>(createCodeModel);
+    return new BehaviorSubject<CodeModel>(this.db.saveData<CodeModel>('t_code', [createCodeModel])[0]);
   }
 }

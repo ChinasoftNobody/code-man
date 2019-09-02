@@ -15,12 +15,12 @@ import {HttpService} from './service/http.service';
 import {HttpClientModule} from '@angular/common/http';
 import {HeaderComponent} from './header/header.component';
 import {LoginService} from './service/login.service';
-import {ProjectService} from './service/project.service';
+import {ProjectService} from './project/project.service';
 import {DashboardComponent} from './project/dashboard/dashboard.component';
 import {HeaderService} from './service/header.service';
 import {CodeComponent} from './project/code/code.component';
 import {ProjectComponent} from './project/project.component';
-import {CodeService} from './service/code.service';
+import {CodeService} from './project/code/code.service';
 import {FileComponent} from './project/code/file/file.component';
 import {CodeItemComponent} from './project/code/item/code-item.component';
 import {CrumbsComponent} from './common/crumbs/crumbs.component';
@@ -36,6 +36,7 @@ import {
   BreadcrumbModule, PanelModule, CardModule, TreeTableModule, DialogModule
 } from 'primeng/primeng';
 import {DataViewModule} from 'primeng/dataview';
+import {Db} from './service/db';
 
 
 @NgModule({
@@ -69,7 +70,7 @@ import {DataViewModule} from 'primeng/dataview';
   ],
   entryComponents: [BottomSheetErrorComponent],
   providers: [LoginInterceptor, TokenService, CookieService, ErrorService, HttpService, LoginService,
-    ProjectService, HeaderService, CodeService],
+    ProjectService, HeaderService, CodeService, Db],
   bootstrap: [AppComponent],
 })
 export class AppModule {

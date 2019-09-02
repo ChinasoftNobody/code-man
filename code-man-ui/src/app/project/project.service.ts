@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ProjectModel} from '../model/project.model';
-import {HeaderService} from './header.service';
+import {HeaderService} from '../service/header.service';
 
 @Injectable({
   providedIn: 'root'

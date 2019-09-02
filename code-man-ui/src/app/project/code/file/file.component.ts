@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CodeService} from '../../../service/code.service';
+import {CodeService} from '../code.service';
 import {CodeFileModel, FileTypeEnum} from '../../../model/code.model';
 import {ActivatedRoute} from '@angular/router';
 import {TreeNode} from 'primeng/api';

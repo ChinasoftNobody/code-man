@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProjectModel} from '../model/project.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HeaderService} from '../service/header.service';
-import {ProjectService} from '../service/project.service';
+import {ProjectService} from './project.service';
 import {MenuItem} from 'primeng/api';
 
 @Component({

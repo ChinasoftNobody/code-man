@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {PageModel} from '../../model/page.model';
 import {ProjectModel} from '../../model/project.model';
-import {ProjectService} from '../../service/project.service';
+import {ProjectService} from '../project.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CodeModel} from '../../model/code.model';
-import {CodeService} from '../../service/code.service';
+import {CodeService} from './code.service';
 import {HeaderService} from '../../service/header.service';
 import {SelectItem} from 'primeng/api';
 import {CrumbsService} from '../../common/crumbs/crumbs.service';

@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {LoginService} from '../service/login.service';
 import {UserModel} from '../model/user.model';
 import {ProjectModel} from '../model/project.model';
-import {ProjectService} from '../service/project.service';
+import {ProjectService} from '../project/project.service';
 import {HeaderService} from '../service/header.service';
 import {MenuItem, SelectItem} from 'primeng/api';
 

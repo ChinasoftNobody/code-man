@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HeaderService} from '../../service/header.service';
 import {ProjectModel} from '../../model/project.model';
-import {ProjectService} from '../../service/project.service';
+import {ProjectService} from '../project.service';
 
 @Component({
   selector: 'app-dashboard',
