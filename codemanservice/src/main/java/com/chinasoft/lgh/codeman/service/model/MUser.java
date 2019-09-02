@@ -1,7 +1,7 @@
 package com.chinasoft.lgh.codeman.service.model;
 
-import com.chinasoft.lgh.iam.core.config.Constants;
-import com.chinasoft.lgh.iam.core.pojo.UserType;
+import com.chinasoft.lgh.codeman.service.config.Constants;
+import com.chinasoft.lgh.codeman.service.pojo.UserType;
 import lombok.Data;
 import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.index.Indexed;

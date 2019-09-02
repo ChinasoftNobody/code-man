@@ -1,12 +1,12 @@
 package com.chinasoft.lgh.codeman.service.controller;
 
-import com.chinasoft.lgh.iam.core.config.Constants;
-import com.chinasoft.lgh.iam.core.model.MUser;
-import com.chinasoft.lgh.iam.core.pojo.Response;
-import com.chinasoft.lgh.iam.core.pojo.user.UserInfo;
-import com.chinasoft.lgh.iam.core.pojo.user.UserPageRequest;
-import com.chinasoft.lgh.iam.core.service.UserService;
-import com.chinasoft.lgh.iam.core.util.TokenStore;
+import com.chinasoft.lgh.codeman.service.config.Constants;
+import com.chinasoft.lgh.codeman.service.model.MUser;
+import com.chinasoft.lgh.codeman.service.pojo.Response;
+import com.chinasoft.lgh.codeman.service.pojo.user.UserInfo;
+import com.chinasoft.lgh.codeman.service.pojo.user.UserPageRequest;
+import com.chinasoft.lgh.codeman.service.service.UserService;
+import com.chinasoft.lgh.codeman.service.util.TokenStore;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;

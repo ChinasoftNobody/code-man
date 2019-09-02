@@ -1,6 +1,6 @@
 package com.chinasoft.lgh.codeman.service.repo;
 
-import com.chinasoft.lgh.iam.core.model.MUser;
+import com.chinasoft.lgh.codeman.service.model.MUser;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

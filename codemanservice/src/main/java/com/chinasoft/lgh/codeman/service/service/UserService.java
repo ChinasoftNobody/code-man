@@ -1,8 +1,8 @@
 package com.chinasoft.lgh.codeman.service.service;
 
-import com.chinasoft.lgh.iam.core.model.MUser;
-import com.chinasoft.lgh.iam.core.pojo.user.UserInfo;
-import com.chinasoft.lgh.iam.core.pojo.user.UserPageRequest;
+import com.chinasoft.lgh.codeman.service.model.MUser;
+import com.chinasoft.lgh.codeman.service.pojo.user.UserInfo;
+import com.chinasoft.lgh.codeman.service.pojo.user.UserPageRequest;
 import org.springframework.data.domain.Page;
 
 public interface UserService {

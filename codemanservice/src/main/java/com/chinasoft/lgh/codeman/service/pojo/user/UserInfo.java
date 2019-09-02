@@ -1,6 +1,6 @@
 package com.chinasoft.lgh.codeman.service.pojo.user;
 
-import com.chinasoft.lgh.iam.core.pojo.UserType;
+import com.chinasoft.lgh.codeman.service.pojo.UserType;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

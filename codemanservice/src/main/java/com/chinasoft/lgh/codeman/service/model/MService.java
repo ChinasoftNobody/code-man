@@ -1,6 +1,6 @@
 package com.chinasoft.lgh.codeman.service.model;
 
-import com.chinasoft.lgh.iam.core.pojo.ServiceType;
+import com.chinasoft.lgh.codeman.service.pojo.ServiceType;
 import lombok.Data;
 import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.Document;

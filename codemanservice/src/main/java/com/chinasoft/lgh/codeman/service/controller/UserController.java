@@ -1,11 +1,11 @@
 package com.chinasoft.lgh.codeman.service.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.chinasoft.lgh.iam.core.config.Constants;
-import com.chinasoft.lgh.iam.core.model.MUser;
-import com.chinasoft.lgh.iam.core.pojo.Response;
-import com.chinasoft.lgh.iam.core.pojo.user.UserInfo;
-import com.chinasoft.lgh.iam.core.service.UserService;
+import com.chinasoft.lgh.codeman.service.config.Constants;
+import com.chinasoft.lgh.codeman.service.model.MUser;
+import com.chinasoft.lgh.codeman.service.pojo.Response;
+import com.chinasoft.lgh.codeman.service.pojo.user.UserInfo;
+import com.chinasoft.lgh.codeman.service.service.UserService;
 import org.springframework.http.MediaType;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;

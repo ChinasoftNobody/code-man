@@ -1,6 +1,6 @@
 package com.chinasoft.lgh.codeman.service;
 
-import com.chinasoft.lgh.iam.core.config.IamAuditorAware;
+import com.chinasoft.lgh.codeman.service.config.IamAuditorAware;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;

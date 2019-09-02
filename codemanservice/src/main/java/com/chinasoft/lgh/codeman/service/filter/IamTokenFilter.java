@@ -1,10 +1,10 @@
 package com.chinasoft.lgh.codeman.service.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.chinasoft.lgh.iam.core.config.Constants;
-import com.chinasoft.lgh.iam.core.model.MUser;
-import com.chinasoft.lgh.iam.core.pojo.Response;
-import com.chinasoft.lgh.iam.core.util.TokenStore;
+import com.chinasoft.lgh.codeman.service.config.Constants;
+import com.chinasoft.lgh.codeman.service.model.MUser;
+import com.chinasoft.lgh.codeman.service.pojo.Response;
+import com.chinasoft.lgh.codeman.service.util.TokenStore;
 import org.apache.catalina.connector.RequestFacade;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Configuration;
