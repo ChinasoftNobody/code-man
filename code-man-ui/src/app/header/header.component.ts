@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {LoginService} from '../service/login.service';
 import {UserModel} from '../model/user.model';
-import {ProjectModel} from '../model/project.model';
+import {UserProjectModel} from '../model/userProjectModel';
 import {ProjectService} from '../project/project.service';
 import {HeaderService} from '../service/header.service';
 import {MenuItem, SelectItem} from 'primeng/api';
@@ -14,7 +14,7 @@ import {MenuItem, SelectItem} from 'primeng/api';
 })
 export class HeaderComponent implements OnInit {
   userInfo: UserModel;
-  projects: ProjectModel[];
+  projects: UserProjectModel[];
   currentProject: string;
   menuItems: MenuItem[];
   projectDropdownOptions: SelectItem[];
@@ -36,30 +36,28 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.projects = this.projectService.getProjectList();
-
-    function getProjectDropdownOptions(projects: ProjectModel[]): SelectItem[] {
-      const options: SelectItem[] = [];
-      projects.forEach(value => {
-        options.push({
-          label: value.name,
-          value: value.id
-        });
+    this.projectService.getProjectList().subscribe(value => {
+      this.projects = value;
+      this.projectDropdownOptions = this.getProjectDropdownOptions(this.projects);
+      this.currentProject = this.projects[0].id;
+      this.menuItems = this.getMenuItemsConfig();
+      this.headerService.currentProjectSubject.subscribe(projectModel => {
+        if (projectModel) {
+          this.currentProject = projectModel.id;
+        }
       });
-      return options;
-    }
-
-    this.projectDropdownOptions = getProjectDropdownOptions(this.projects);
-    this.currentProject = this.projects[0].id;
-    this.userInfo = this.loginService.getUserInfo();
-    this.menuItems = this.getMenuItemsConfig();
-    this.headerService.currentProjectSubject.subscribe(projectModel => {
-      if (projectModel) {
-        this.currentProject = projectModel.id;
-      }
     });
   }
-
+  getProjectDropdownOptions(projects: UserProjectModel[]): SelectItem[] {
+    const options: SelectItem[] = [];
+    projects.forEach(p => {
+      options.push({
+        label: p.project.name,
+        value: p.id
+      });
+    });
+    return options;
+  }
   changeProject() {
     this.go(['/project', this.currentProject]);
   }

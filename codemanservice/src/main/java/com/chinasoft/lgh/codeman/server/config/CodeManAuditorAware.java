@@ -9,7 +9,7 @@ import java.util.Optional;
 public class CodeManAuditorAware implements AuditorAware<String> {
     @Override
     public Optional<String> getCurrentAuditor() {
-        MUser user = TokenStore.currentUser.get();
+        MUser user = TokenStore.currentUser();
         if (user == null) {
             return Optional.empty();
         }

@@ -2,7 +2,6 @@ package com.chinasoft.lgh.codeman.server.model;
 
 import com.chinasoft.lgh.codeman.server.pojo.UserType;
 import lombok.Data;
-import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,10 +11,8 @@ import java.util.Collections;
 
 @Data
 @Document(collection = "users")
-public class MUser implements UserDetails {
+public class MUser extends MBaseModel implements UserDetails {
 
-    @Id
-    private String id;
     private String username;
     private String password;
     private String email;
@@ -28,20 +25,6 @@ public class MUser implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
-
-    private boolean deleted;
-
-    @CreatedDate
-    private long createdOn;
-
-    @LastModifiedDate
-    private long updatedOn;
-
-    @CreatedBy
-    private String createdBy;
-
-    @LastModifiedBy
-    private String modifiedBy;
 
 
     public MUser() {

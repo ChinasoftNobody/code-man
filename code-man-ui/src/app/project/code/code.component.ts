@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PageModel} from '../../model/page.model';
-import {ProjectModel} from '../../model/project.model';
+import {UserProjectModel} from '../../model/userProjectModel';
 import {ProjectService} from '../project.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CodeModel} from '../../model/code.model';

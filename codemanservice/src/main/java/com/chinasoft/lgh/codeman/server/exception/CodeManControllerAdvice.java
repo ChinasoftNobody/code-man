@@ -2,8 +2,8 @@ package com.chinasoft.lgh.codeman.server.exception;
 
 
 import com.alibaba.fastjson.JSON;
+import com.chinasoft.lgh.codeman.server.common.Response;
 import com.chinasoft.lgh.codeman.server.config.MessageLoader;
-import com.chinasoft.lgh.codeman.server.pojo.Response;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindException;
@@ -24,7 +24,7 @@ public class CodeManControllerAdvice {
     public void error(CodeManException e, HttpServletResponse response) {
         try {
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            response.getWriter().write(JSON.toJSONString(Response.error(messageLoader.get(e.getCode()))));
+            response.getWriter().write(JSON.toJSONString(Response.err(messageLoader.get(e.getCode()))));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class CodeManControllerAdvice {
     public void error(AccessDeniedException e, HttpServletResponse response){
         try {
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            response.getWriter().write(JSON.toJSONString(Response.error(messageLoader.get(ExceptionCode.PERMISSION_DENIED))));
+            response.getWriter().write(JSON.toJSONString(Response.err(messageLoader.get(ExceptionCode.PERMISSION_DENIED))));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -43,7 +43,7 @@ public class CodeManControllerAdvice {
     public void error(Exception e, HttpServletResponse response) {
         try {
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            response.getWriter().write(JSON.toJSONString(Response.error(messageLoader.get(ExceptionCode.SYSTEM_ERROR))));
+            response.getWriter().write(JSON.toJSONString(Response.err(messageLoader.get(ExceptionCode.SYSTEM_ERROR))));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -58,7 +58,7 @@ public class CodeManControllerAdvice {
                 stringBuffer.append(fieldError.getField()).append(fieldError.getDefaultMessage()).append(System.lineSeparator());
             });
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-            response.getWriter().write(JSON.toJSONString(Response.error(stringBuffer.toString())));
+            response.getWriter().write(JSON.toJSONString(Response.err(stringBuffer.toString())));
         } catch (IOException e1) {
             e1.printStackTrace();
         }

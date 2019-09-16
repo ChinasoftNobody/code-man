@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ProjectModel} from '../model/project.model';
+import {UserProjectModel} from '../model/userProjectModel';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HeaderService} from '../service/header.service';
 import {ProjectService} from './project.service';
@@ -11,7 +11,7 @@ import {MenuItem} from 'primeng/api';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-  project: ProjectModel;
+  project: UserProjectModel;
 
   // 项目代码
   constructor(private activeRoute: ActivatedRoute,
@@ -21,7 +21,9 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.project = this.projectService.getProjectList()[0];
+    this.projectService.getProjectList().subscribe(value => {
+      this.project = value[0];
+    });
     this.activeRoute.params.subscribe((params: Params) => {
       if (params.projectId) {
         if (params.projectId !== this.project.id) {

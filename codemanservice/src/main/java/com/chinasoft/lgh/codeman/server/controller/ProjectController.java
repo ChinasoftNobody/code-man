@@ -1,10 +1,9 @@
 package com.chinasoft.lgh.codeman.server.controller;
 
-import com.chinasoft.lgh.codeman.server.config.Constants;
-import com.chinasoft.lgh.codeman.server.exception.ExceptionCode;
+import com.chinasoft.lgh.codeman.server.common.Response;
 import com.chinasoft.lgh.codeman.server.exception.CodeManException;
+import com.chinasoft.lgh.codeman.server.exception.ExceptionCode;
 import com.chinasoft.lgh.codeman.server.model.MProject;
-import com.chinasoft.lgh.codeman.server.pojo.Response;
 import com.chinasoft.lgh.codeman.server.pojo.project.ProjectListRequest;
 import com.chinasoft.lgh.codeman.server.pojo.project.ProjectRegisterRequest;
 import com.chinasoft.lgh.codeman.server.service.ProjectService;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping(value = "/api/v1/project", headers = {Constants.IAM_TOKEN_HEADER},
+@RequestMapping(value = "/api/v1/project",
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ProjectController {
@@ -27,13 +26,14 @@ public class ProjectController {
 
     @PostMapping("/list")
     public Response<Page<MProject>> projectList(@RequestBody ProjectListRequest request) {
-        return Response.success(projectService.queryProjectList(request));
+        return Response.of(projectService.queryProjectList(request));
     }
+
     @PostMapping("/create")
     public Response<MProject> create(@RequestBody ProjectRegisterRequest request){
         MProject project = projectService.createProject(request);
         if (project != null){
-            return Response.success(project);
+            return Response.of(project);
         }
         throw new CodeManException(ExceptionCode.PROJECT_CREATE_FAILED);
     }

@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpService, IamUrls, UrlConfig} from './http.service';
+import {HttpService, CodeManUrls} from './http.service';
 import {TokenService} from './token.service';
-import {Route, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {ErrorService} from './error.service';
-import {UserModel} from '../model/user.model';
 
 @Injectable()
 export class LoginService {
@@ -18,7 +17,7 @@ export class LoginService {
    * 登出
    */
   logout() {
-    this.httpService.request<string>(IamUrls.logoutUrl, {}).subscribe(res => {
+    this.httpService.request<any>(CodeManUrls.logoutUrl, {}).subscribe(res => {
       if (res === 'ok') {
         this.tokenService.clearToken();
         this.route.navigate(['login']).then();
@@ -26,9 +25,5 @@ export class LoginService {
         this.error.newBusinessError('登出失败');
       }
     });
-  }
-
-  getUserInfo(): UserModel {
-    return this.tokenService.getUserInfo();
   }
 }

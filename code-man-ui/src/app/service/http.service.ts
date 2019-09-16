@@ -16,18 +16,18 @@ export class Urls {
 export class UrlConfig {
   constructor(url: string) {
     this.url = url;
-    this.method = 'post';
+    this.method = 'POST';
   }
 
   url: string;
-  method ? = 'post';
+  method ? = 'POST';
 }
 
-export class IamUrls extends Urls {
-  static domain = 'http://localhost:8080/iam';
-  static loginUrl: UrlConfig = new UrlConfig('/public/user/login');
-  static logoutUrl: UrlConfig = new UrlConfig('/user/logout');
-  static userListUrl: UrlConfig = new UrlConfig('/user/list');
+export class CodeManUrls extends Urls {
+  static domain = 'http://localhost:8080/codeman';
+  static loginUrl: UrlConfig = {url: '/oauth/token', method: 'get'};
+  static logoutUrl: UrlConfig = {url: '/logout', method: 'get'};
+  static userProjectsUrl: UrlConfig = {url: '/api/v1/user/projects', method: 'get'};
 }
 
 
@@ -42,24 +42,42 @@ export class HttpService {
    * @param requestBody requestBody
    */
   request<T>(urlConfig: UrlConfig, requestBody: any): Observable<T> {
-    const url = IamUrls.domain + urlConfig.url;
+    const url = CodeManUrls.domain + urlConfig.url + '?access_token=' + this.tokenService.getToken();
     const resultSubject: Subject<T> = new Subject();
     this.http.request<ResponseModel<T>>(urlConfig.method, url, {
       body: requestBody,
       observe: 'response',
       headers: {
-        'IAM-TOKEN': this.tokenService.getToken()
+        authorization: 'Bearer ' + this.tokenService.getToken()
       }
     }).subscribe(res => {
-      const iamToken = res.headers.get(TokenService.tokenKey);
-      if (iamToken) {
-        this.tokenService.setToken(iamToken);
-      }
-      if (res && res.body && res.body.success) {
+      if (res && res.body && res.status === 200) {
         resultSubject.next(res.body.result);
       } else {
         this.error.newBusinessError(res.body.error);
       }
+    }, error1 => {
+      this.error.newSystemError(error1);
+    });
+    return resultSubject;
+  }
+
+  /**
+   * post 请求返回以json格式封装对象
+   * @param urlConfig urlConfig
+   * @param requestBody requestBody ''/vjw'yf;;;;;f f `g
+   */
+  requestBase(urlConfig: UrlConfig, requestBody: any): Observable<any> {
+    const url = CodeManUrls.domain + urlConfig.url;
+    const resultSubject: Subject<any> = new Subject();
+    this.http.request<ResponseModel<any>>(urlConfig.method, url, {
+      body: requestBody,
+      observe: 'response',
+      headers: {
+        Authorization: 'Bearer ' + this.tokenService.getToken()
+      }
+    }).subscribe(res => {
+      resultSubject.next(res.body);
     }, error1 => {
       this.error.newSystemError(error1);
     });

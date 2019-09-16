@@ -21,8 +21,8 @@
 </mat-toolbar>-->
 <p-menubar [model]="menuItems">
   <div>
-    <p-dropdown [options]="projectDropdownOptions" [(ngModel)]="currentProject" (onClick)="changeProject()"></p-dropdown>
-    <button pButton label="Logout" icon="fa fa-sign-out" style="margin-left:.25em"></button>
+    <p-dropdown [options]="projectDropdownOptions" [(ngModel)]="currentProject" (onChange)="changeProject()"></p-dropdown>
+    <button pButton label="Logout" icon="fa fa-sign-out" style="margin-left:.25em" (click)="logout()"></button>
   </div>
 </p-menubar>
 <!--<p-menubar [model]="menuItems" [autoDisplay]="false">-->

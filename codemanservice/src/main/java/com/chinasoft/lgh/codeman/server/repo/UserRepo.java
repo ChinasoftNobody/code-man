@@ -5,7 +5,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface UserRepo extends IamRepo<MUser, String> {
+public interface UserRepo extends CodeManRepo<MUser, String> {
     MUser findByUsernameAndDeleted(String name, boolean deleted);
 
     Page<MUser> findAllByDeleted(boolean deleted, Pageable pageable);

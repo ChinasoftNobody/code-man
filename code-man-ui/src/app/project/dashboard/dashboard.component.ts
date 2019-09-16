@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {HeaderService} from '../../service/header.service';
-import {ProjectModel} from '../../model/project.model';
+import {UserProjectModel} from '../../model/userProjectModel';
 import {ProjectService} from '../project.service';
 
 @Component({

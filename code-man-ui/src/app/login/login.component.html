@@ -24,3 +24,29 @@
 <!--  </div>-->
 
 <!--</div>-->
+<!-- dialog -->
+<p-dialog header="添加代码库" [(visible)]="dialogDisplay" [modal]="true" [responsive]="true"
+          [style]="{width: '50%', minWidth: '200px'}" [minY]="70"
+          [maximizable]="true" [baseZIndex]="10000">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <span style="width: 100px;" class="ui-inputgroup-addon">用户名</span>
+        <input type="text" pInputText [(ngModel)]="userInfo.username">
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-inputgroup">
+        <span style="width: 100px;" class="ui-inputgroup-addon">密码</span>
+        <input type="password" pInputText [(ngModel)]="userInfo.password">
+      </div>
+    </div>
+
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="login()" label="确定"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="dialogDisplay=false" label="取消"
+            class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
