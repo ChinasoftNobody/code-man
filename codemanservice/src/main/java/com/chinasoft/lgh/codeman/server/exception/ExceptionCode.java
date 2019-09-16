@@ -4,6 +4,7 @@ public class ExceptionCode {
     public static final String PERMISSION_DENIED = "PERMISSION_DENIED";
 
     public static final String INVALID_PARAM = "INVALID_PARAM";
+    public static final String INVALID_PROJECT = "INVALID_PROJECT";
     public static final String SYSTEM_ERROR = "SYSTEM_ERROR";
     public static final String USER_NOT_FOUND = "USER_NOT_FOUND";
     public static final String LOGIN_FAILED = "LOGIN_FAILED";
